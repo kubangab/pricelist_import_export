@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Define actions -->
+    <record id="action_pricelist_import" model="ir.actions.act_window">
+        <field name="name">Import Pricelist</field>
+        <field name="res_model">pricelist.import_export</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'default_action_type': 'import', 'default_pricelist_id': active_id}</field>
+    </record>
+
+    <record id="action_pricelist_export" model="ir.actions.act_window">
+        <field name="name">Export Pricelist</field>
+        <field name="res_model">pricelist.import_export</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'default_action_type': 'export'}</field>
+    </record>
+
+    <!-- Add actions to the More menu -->
+    <record id="action_pricelist_import_menu" model="ir.actions.server">
+        <field name="name">Import Pricelist</field>
+        <field name="model_id" ref="product.model_product_pricelist"/>
+        <field name="binding_model_id" ref="product.model_product_pricelist"/>
+        <field name="binding_view_types">list,form</field>
+        <field name="state">code</field>
+        <field name="code">action = model.env['pricelist.import_export'].action_import_pricelist()</field>
+    </record>
+
+    <record id="action_pricelist_export_menu" model="ir.actions.server">
+        <field name="name">Export Pricelist</field>
+        <field name="model_id" ref="product.model_product_pricelist"/>
+        <field name="binding_model_id" ref="product.model_product_pricelist"/>
+        <field name="binding_view_types">list,form</field>
+        <field name="state">code</field>
+        <field name="code">action = model.env['pricelist.import_export'].action_export_pricelist()</field>
+    </record>
+</odoo> 
