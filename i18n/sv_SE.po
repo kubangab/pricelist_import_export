@@ -4,16 +4,18 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0+e-20230427\n"
+"Project-Id-Version: Odoo Server 16.0+e-20240701\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-20 16:54+0000\n"
-"PO-Revision-Date: 2023-05-20 16:54+0000\n"
+"POT-Creation-Date: 2024-07-17 06:51+0000\n"
+"PO-Revision-Date: 2024-07-17 08:52+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #. module: pricelist_import_export
 #: model:ir.model.fields,field_description:pricelist_import_export.field_pricelist_import_export__action_type
@@ -41,19 +43,26 @@ msgid "Display Name"
 msgstr "Visningsnamn"
 
 #. module: pricelist_import_export
-#: model:ir.model.fields.selection,name:pricelist_import_export.selection__pricelist_import_export__file_type__xlsx
-msgid "Excel"
-msgstr "Excel"
-
-#. module: pricelist_import_export
-#: model_terms:ir.ui.view,arch_db:pricelist_import_export.view_pricelist_import_export_wizard
-msgid "Execute"
-msgstr "Utför"
+#. odoo-python
+#: code:addons/pricelist_import_export/models/pricelist_import_export.py:0
+#, python-format
+msgid "Error importing file: %s"
+msgstr "Fel vid import av fil: %s"
 
 #. module: pricelist_import_export
 #: model:ir.model.fields.selection,name:pricelist_import_export.selection__pricelist_import_export__action_type__export
+#: model_terms:ir.ui.view,arch_db:pricelist_import_export.view_product_pricelist_tree_inherit
 msgid "Export"
 msgstr "Exportera"
+
+#. module: pricelist_import_export
+#. odoo-python
+#: code:addons/pricelist_import_export/models/pricelist_import_export.py:0
+#: model:ir.actions.act_window,name:pricelist_import_export.action_pricelist_export
+#: model:ir.actions.server,name:pricelist_import_export.action_pricelist_export_menu
+#, python-format
+msgid "Export Pricelist"
+msgstr "Exportera prislista"
 
 #. module: pricelist_import_export
 #: model:ir.model.fields,field_description:pricelist_import_export.field_pricelist_import_export__file
@@ -61,9 +70,9 @@ msgid "File"
 msgstr "Fil"
 
 #. module: pricelist_import_export
-#: model:ir.model.fields,field_description:pricelist_import_export.field_pricelist_import_export__file_type
-msgid "File Type"
-msgstr "Filtyp"
+#: model:ir.model.fields,field_description:pricelist_import_export.field_pricelist_import_export__file_name
+msgid "File Name"
+msgstr "Filnamn"
 
 #. module: pricelist_import_export
 #: model:ir.model.fields,field_description:pricelist_import_export.field_pricelist_import_export__id
@@ -72,8 +81,38 @@ msgstr "ID"
 
 #. module: pricelist_import_export
 #: model:ir.model.fields.selection,name:pricelist_import_export.selection__pricelist_import_export__action_type__import
+#: model_terms:ir.ui.view,arch_db:pricelist_import_export.view_pricelist_import_export_wizard
+#: model_terms:ir.ui.view,arch_db:pricelist_import_export.view_product_pricelist_tree_inherit
 msgid "Import"
 msgstr "Importera"
+
+#. module: pricelist_import_export
+#. odoo-python
+#: code:addons/pricelist_import_export/models/pricelist_import_export.py:0
+#: model:ir.actions.act_window,name:pricelist_import_export.action_pricelist_import
+#: model:ir.actions.server,name:pricelist_import_export.action_pricelist_import_menu
+#: model_terms:ir.ui.view,arch_db:pricelist_import_export.view_pricelist_import_export_wizard
+#, python-format
+msgid "Import Pricelist"
+msgstr "Importera prislista"
+
+#. module: pricelist_import_export
+#. odoo-python
+#: code:addons/pricelist_import_export/models/pricelist_import_export.py:0
+#, python-format
+msgid ""
+"Invalid file format. Please make sure the file has three columns: Product "
+"Internal Reference, Product Name, Price"
+msgstr ""
+"Ogiltigt filformat. Se till att filen har tre kolumner: Produktens "
+"interna referens, Produktnamn, Pris"
+
+#. module: pricelist_import_export
+#. odoo-python
+#: code:addons/pricelist_import_export/models/pricelist_import_export.py:0
+#, python-format
+msgid "Invalid file format. Please upload an Excel file."
+msgstr "Ogiltigt filformat. Vänligen ladda upp en Excel-fil."
 
 #. module: pricelist_import_export
 #: model:ir.model.fields,field_description:pricelist_import_export.field_pricelist_import_export____last_update
@@ -94,20 +133,20 @@ msgstr "Senast uppdaterad den"
 #. odoo-python
 #: code:addons/pricelist_import_export/models/pricelist_import_export.py:0
 #, python-format
-msgid "Price not found for product or variant with Internal Reference: %s"
-msgstr "Pris inte hittat för produkt eller variant med intern referens: %s"
+msgid "Please select a file first."
+msgstr "Vänligen välj en fil först."
+
+#. module: pricelist_import_export
+#. odoo-python
+#: code:addons/pricelist_import_export/models/pricelist_import_export.py:0
+#, python-format
+msgid "Please select a pricelist."
+msgstr "Vänligen välj en prislista."
 
 #. module: pricelist_import_export
 #: model:ir.model.fields,field_description:pricelist_import_export.field_pricelist_import_export__pricelist_id
 msgid "Pricelist"
 msgstr "Prislista"
-
-#. module: pricelist_import_export
-#: model:ir.actions.act_window,name:pricelist_import_export.pricelist_import_export_action
-#: model:ir.actions.server,name:pricelist_import_export.pricelist_import_export_menu
-#: model_terms:ir.ui.view,arch_db:pricelist_import_export.view_pricelist_import_export_wizard
-msgid "Pricelist Import/Export"
-msgstr "Prislista Import/Export"
 
 #. module: pricelist_import_export
 #: model:ir.model,name:pricelist_import_export.model_pricelist_import_export
