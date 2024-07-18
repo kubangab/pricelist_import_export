@@ -8,7 +8,7 @@
     'category': 'Sales',
     'license': 'AGPL-3',
     'author': "Lasse Larsson",
-    'website': "https://kubang.eu",
+    'website': "https://kubang.se",
     'depends': ['base', 'sale'],
     'data': [
         'security/ir.model.access.csv',
