@@ -4,7 +4,7 @@
     'description': """
         This module allows you to import and export product prices in pricelists using Excel files.
     """,
-    'version': '2.0.1',
+    'version': '2.0.2',
     'category': 'Sales',
     'license': 'AGPL-3',
     'author': "Lasse Larsson",
