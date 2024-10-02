@@ -36,57 +36,87 @@ class PricelistImportExportWizard(models.Model):
 
     def _import_pricelist(self):
         if not self.file:
-            raise UserError(_('Please select a file first.'))
+            raise UserError(_('Please select a file to import.'))
 
         try:
-            data = base64.b64decode(self.file)
-            book = xlrd.open_workbook(file_contents=data)
-            sheet = book.sheet_by_index(0)
+            xlsx_data = base64.b64decode(self.file)
+            workbook = xlrd.open_workbook(file_contents=xlsx_data)
+            sheet = workbook.sheet_by_index(0)
 
-            with self.env.cr.savepoint():
-                for row in range(1, sheet.nrows):
-                    values = sheet.row_values(row)
-                    if len(values) != 3:
-                        raise UserError(_('Invalid file format. Please make sure the file has three columns: Product Internal Reference, Product Name, Price'))
+            for row in range(1, sheet.nrows):  # Start from 1 to skip header
+                internal_ref = sheet.cell(row, 0).value
+                product_name = sheet.cell(row, 1).value
+                variant_name = sheet.cell(row, 2).value
+                price = sheet.cell(row, 3).value
 
-                    product_code, product_name, price = values
-                    product = self.env['product.template'].search([('default_code', '=', product_code)], limit=1)
+                product = self.env['product.product'].search([('default_code', '=', internal_ref)], limit=1)
+                if not product:
+                    product = self.env['product.template'].search([('default_code', '=', internal_ref)], limit=1)
 
-                    if not product:
-                        product = self.env['product.template'].create({
-                            'name': product_name,
-                            'default_code': product_code,
-                        })
+                if not product:
+                    raise UserError(_('Product with internal reference %s not found.') % internal_ref)
 
-                    pricelist_item = self.env['product.pricelist.item'].search([
-                        ('pricelist_id', '=', self.pricelist_id.id),
-                        ('product_tmpl_id', '=', product.id),
-                        ('applied_on', '=', '1_product')
-                    ], limit=1)
+                pricelist_item = self.env['product.pricelist.item'].search([
+                    ('pricelist_id', '=', self.pricelist_id.id),
+                    '|', ('product_id', '=', product.id), ('product_tmpl_id', '=', product.product_tmpl_id.id)
+                ], limit=1)
 
-                    if pricelist_item:
-                        pricelist_item.fixed_price = float(price)
-                    else:
-                        self.env['product.pricelist.item'].create({
-                            'pricelist_id': self.pricelist_id.id,
-                            'product_tmpl_id': product.id,
-                            'applied_on': '1_product',
-                            'fixed_price': float(price),
-                        })
+                if pricelist_item:
+                    pricelist_item.write({'fixed_price': price})
+                else:
+                    self.env['product.pricelist.item'].create({
+                        'pricelist_id': self.pricelist_id.id,
+                        'product_id': product.id if product._name == 'product.product' else False,
+                        'product_tmpl_id': product.id if product._name == 'product.template' else product.product_tmpl_id.id,
+                        'fixed_price': price,
+                    })
 
             return {'type': 'ir.actions.act_window_close'}
 
-        except xlrd.XLRDError:
-            raise UserError(_('Invalid file format. Please upload an Excel file.'))
         except Exception as e:
             raise UserError(_('Error importing file: %s') % str(e))
 
     def _export_pricelist(self):
         self.ensure_one()
-        self.generate_excel()
+        output = BytesIO()
+        workbook = xlsxwriter.Workbook(output)
+        worksheet = workbook.add_worksheet(self.pricelist_id.name)
+
+        # Skriv rubrikerna
+        headers = ['Internal Reference', 'Product', 'Variant', 'Price']
+        for col, header in enumerate(headers):
+            worksheet.write(0, col, header)
+
+        # Skriv prislistans innehåll
+        row = 1
+        for item in self.pricelist_id.item_ids:
+            if item.compute_price != 'fixed':  # Skippa beräknade rader
+                continue
+            product = item.product_id or item.product_tmpl_id
+            if item.product_id:  # Detta är en produktvariant
+                worksheet.write(row, 0, item.product_id.default_code or '')
+                worksheet.write(row, 1, product.name)
+                worksheet.write(row, 2, item.product_id.name)
+            else:  # Detta är en produktmall
+                worksheet.write(row, 0, product.default_code or '')
+                worksheet.write(row, 1, product.name)
+                worksheet.write(row, 2, '')
+            worksheet.write(row, 3, item.fixed_price)
+            row += 1
+
+        workbook.close()
+        xlsx_data = output.getvalue()
+
+        # Spara den genererade filen i wizard-posten
+        self.write({
+            'file': base64.b64encode(xlsx_data),
+            'file_name': f"{self.pricelist_id.name}_export.xlsx"
+        })
+
+        # Returnera en aktion för att ladda ner filen
         return {
             'type': 'ir.actions.act_url',
-            'url': f'/web/content/?model={self._name}&id={self.id}&field=file&filename={self.file_name}&download=true',
+            'url': f'/web/content/?model={self._name}&id={self.id}&field=file&filename_field=file_name&download=true',
             'target': 'self',
         }
 
