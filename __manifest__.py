@@ -13,9 +13,10 @@
     'data': [
         'security/ir.model.access.csv',
         'security/pricelist_import_export_security.xml',
+        'wizard/pricelist_import_export_wizard_view.xml',
         'views/menu_views.xml',
         'views/product_pricelist_views.xml',
-        'wizard/pricelist_import_export_wizard_view.xml',
+        'views/pricelist_import_export.xml',
     ],
     'installable': True,
 }

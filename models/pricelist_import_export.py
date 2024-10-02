@@ -5,34 +5,36 @@ import xlsxwriter
 import xlrd
 from io import BytesIO
 
-class PricelistImportExport(models.TransientModel):
-    _name = "pricelist.import_export"
-    _description = "Pricelist Import/Export Wizard"
+class PricelistImportExportWizard(models.Model):
+    _name = 'pricelist.import.export.wizard'
+    _description = 'Pricelist Import/Export Wizard'
 
     pricelist_id = fields.Many2one('product.pricelist', string='Pricelist', required=True)
     file = fields.Binary(string='File', attachment=False)
     file_name = fields.Char(string='File Name')
-    action_type = fields.Selection([('import', 'Import'), ('export', 'Export')], string='Action Type', required=True)
+    action_type = fields.Selection([
+        ('import', 'Import'),
+        ('export', 'Export')
+    ], string='Action Type', required=True)
 
     @api.model
     def default_get(self, fields):
-        res = super(PricelistImportExport, self).default_get(fields)
+        res = super(PricelistImportExportWizard, self).default_get(fields)
         active_id = self.env.context.get('active_id')
         if active_id:
             res['pricelist_id'] = active_id
         return res
 
-    def execute_action(self):
+    def action_import_export(self):
         self.ensure_one()
-        if not self.pricelist_id:
-            raise UserError(_("Please select a pricelist."))
-
         if self.action_type == 'import':
-            return self.import_pricelist()
+            return self._import_pricelist()
         elif self.action_type == 'export':
-            return self.export_pricelist()
+            return self._export_pricelist()
+        else:
+            raise UserError(_("Invalid action type."))
 
-    def import_pricelist(self):
+    def _import_pricelist(self):
         if not self.file:
             raise UserError(_('Please select a file first.'))
 
@@ -79,7 +81,7 @@ class PricelistImportExport(models.TransientModel):
         except Exception as e:
             raise UserError(_('Error importing file: %s') % str(e))
 
-    def export_pricelist(self):
+    def _export_pricelist(self):
         self.ensure_one()
         self.generate_excel()
         return {
