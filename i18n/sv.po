@@ -4,46 +4,50 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0+e-20230427\n"
+"Project-Id-Version: Odoo Server 16.0+e-20240926\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-20 16:54+0000\n"
-"PO-Revision-Date: 2023-05-20 16:54+0000\n"
+"POT-Creation-Date: 2024-10-04 12:16+0000\n"
+"PO-Revision-Date: 2024-10-04 14:17+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.5\n"
 
 #. module: pricelist_import_export
-#: model:ir.model.fields,field_description:pricelist_import_export.field_pricelist_import_export__action_type
-msgid "Action Type"
-msgstr "Åtgärdstyp"
+#: model:ir.model.fields,field_description:pricelist_import_export.field_pricelist_import_export_wizard__action_type
+msgid "Action"
+msgstr "Åtgärd"
 
 #. module: pricelist_import_export
 #: model_terms:ir.ui.view,arch_db:pricelist_import_export.view_pricelist_import_export_wizard
-msgid "Cancel"
-msgstr "Avbryt"
+msgid "Close"
+msgstr "Stäng"
 
 #. module: pricelist_import_export
-#: model:ir.model.fields,field_description:pricelist_import_export.field_pricelist_import_export__create_uid
+#: model:ir.model.fields,field_description:pricelist_import_export.field_pricelist_import_export_wizard__create_uid
 msgid "Created by"
-msgstr "Skapad av"
+msgstr "Skapat av"
 
 #. module: pricelist_import_export
-#: model:ir.model.fields,field_description:pricelist_import_export.field_pricelist_import_export__create_date
+#: model:ir.model.fields,field_description:pricelist_import_export.field_pricelist_import_export_wizard__create_date
 msgid "Created on"
 msgstr "Skapad den"
 
 #. module: pricelist_import_export
-#: model:ir.model.fields,field_description:pricelist_import_export.field_pricelist_import_export__display_name
+#: model:ir.model.fields,field_description:pricelist_import_export.field_pricelist_import_export_wizard__display_name
 msgid "Display Name"
 msgstr "Visningsnamn"
 
 #. module: pricelist_import_export
-#: model:ir.model.fields.selection,name:pricelist_import_export.selection__pricelist_import_export__file_type__xlsx
-msgid "Excel"
-msgstr "Excel"
+#. odoo-python
+#: code:addons/pricelist_import_export/wizard/pricelist_import_export_wizard.py:0
+#, python-format
+msgid "Error importing file: %s"
+msgstr "Fel vid import av fil: %s"
 
 #. module: pricelist_import_export
 #: model_terms:ir.ui.view,arch_db:pricelist_import_export.view_pricelist_import_export_wizard
@@ -51,65 +55,80 @@ msgid "Execute"
 msgstr "Utför"
 
 #. module: pricelist_import_export
-#: model:ir.model.fields.selection,name:pricelist_import_export.selection__pricelist_import_export__action_type__export
+#: model:ir.model.fields.selection,name:pricelist_import_export.selection__pricelist_import_export_wizard__action_type__export
 msgid "Export"
 msgstr "Exportera"
 
 #. module: pricelist_import_export
-#: model:ir.model.fields,field_description:pricelist_import_export.field_pricelist_import_export__file
+#: model:ir.model.fields,field_description:pricelist_import_export.field_pricelist_import_export_wizard__file
 msgid "File"
 msgstr "Fil"
 
 #. module: pricelist_import_export
-#: model:ir.model.fields,field_description:pricelist_import_export.field_pricelist_import_export__file_type
-msgid "File Type"
-msgstr "Filtyp"
+#: model:ir.model.fields,field_description:pricelist_import_export.field_pricelist_import_export_wizard__file_name
+msgid "File Name"
+msgstr "Filnamn"
 
 #. module: pricelist_import_export
-#: model:ir.model.fields,field_description:pricelist_import_export.field_pricelist_import_export__id
+#: model:ir.model.fields,field_description:pricelist_import_export.field_pricelist_import_export_wizard__id
 msgid "ID"
 msgstr "ID"
 
 #. module: pricelist_import_export
-#: model:ir.model.fields.selection,name:pricelist_import_export.selection__pricelist_import_export__action_type__import
+#: model:ir.model.fields.selection,name:pricelist_import_export.selection__pricelist_import_export_wizard__action_type__import
 msgid "Import"
 msgstr "Importera"
 
 #. module: pricelist_import_export
-#: model:ir.model.fields,field_description:pricelist_import_export.field_pricelist_import_export____last_update
+#: model:ir.model.fields,field_description:pricelist_import_export.field_pricelist_import_export_wizard__import_log
+msgid "Import Log"
+msgstr "Importera logg"
+
+#. module: pricelist_import_export
+#: model_terms:ir.ui.view,arch_db:pricelist_import_export.view_product_pricelist_form_import_export
+msgid "Import/Export"
+msgstr "Importera/Exportera"
+
+#. module: pricelist_import_export
+#: model:ir.actions.act_window,name:pricelist_import_export.action_pricelist_import_export_wizard
+#: model:ir.ui.menu,name:pricelist_import_export.menu_pricelist_import_export
+#: model_terms:ir.ui.view,arch_db:pricelist_import_export.view_pricelist_import_export_wizard
+msgid "Import/Export Pricelist"
+msgstr "Import/Export Prislista"
+
+#. module: pricelist_import_export
+#: model:ir.model.fields,field_description:pricelist_import_export.field_pricelist_import_export_wizard____last_update
 msgid "Last Modified on"
-msgstr "Senast ändrad den"
+msgstr "Senaste ändrad den"
 
 #. module: pricelist_import_export
-#: model:ir.model.fields,field_description:pricelist_import_export.field_pricelist_import_export__write_uid
+#: model:ir.model.fields,field_description:pricelist_import_export.field_pricelist_import_export_wizard__write_uid
 msgid "Last Updated by"
-msgstr "Senast uppdaterad av"
+msgstr "Senast uppdatera av"
 
 #. module: pricelist_import_export
-#: model:ir.model.fields,field_description:pricelist_import_export.field_pricelist_import_export__write_date
+#: model:ir.model.fields,field_description:pricelist_import_export.field_pricelist_import_export_wizard__write_date
 msgid "Last Updated on"
 msgstr "Senast uppdaterad den"
 
 #. module: pricelist_import_export
-#. odoo-python
-#: code:addons/pricelist_import_export/models/pricelist_import_export.py:0
-#, python-format
-msgid "Price not found for product or variant with Internal Reference: %s"
-msgstr "Pris inte hittat för produkt eller variant med intern referens: %s"
+#: model:ir.model.fields,field_description:pricelist_import_export.field_pricelist_import_export_wizard__operation_done
+msgid "Operation Done"
+msgstr "Operation utförd"
 
 #. module: pricelist_import_export
-#: model:ir.model.fields,field_description:pricelist_import_export.field_pricelist_import_export__pricelist_id
+#. odoo-python
+#: code:addons/pricelist_import_export/wizard/pricelist_import_export_wizard.py:0
+#, python-format
+msgid "Please select a file to import."
+msgstr "Välj en fil som ska importeras."
+
+#. module: pricelist_import_export
+#: model:ir.model.fields,field_description:pricelist_import_export.field_pricelist_import_export_wizard__pricelist_id
 msgid "Pricelist"
 msgstr "Prislista"
 
 #. module: pricelist_import_export
-#: model:ir.actions.act_window,name:pricelist_import_export.pricelist_import_export_action
-#: model:ir.actions.server,name:pricelist_import_export.pricelist_import_export_menu
-#: model_terms:ir.ui.view,arch_db:pricelist_import_export.view_pricelist_import_export_wizard
-msgid "Pricelist Import/Export"
-msgstr "Prislista Import/Export"
-
-#. module: pricelist_import_export
-#: model:ir.model,name:pricelist_import_export.model_pricelist_import_export
+#: model:ir.model,name:pricelist_import_export.model_pricelist_import_export_wizard
 msgid "Pricelist Import/Export Wizard"
-msgstr "Prislista Import/Export Guiden"
+msgstr "Guiden för import/export av prislistor"

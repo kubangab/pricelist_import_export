@@ -1,22 +1,22 @@
 {
-    'name': "Pricelist Import/Export",
-    'summary': "Import and export product prices in pricelists",
-    'description': """
-        This module allows you to import and export product prices in pricelists using Excel files.
-    """,
-    'version': '2.0.2',
+    'name': 'Pricelist Import/Export',
+    'version': '1.0.0',
     'category': 'Sales',
-    'license': 'AGPL-3',
-    'author': "Lasse Larsson",
-    'website': "https://kubang.se",
-    'depends': ['base', 'sale'],
+    'summary': 'Import and export pricelist items',
+    'description': """
+        This module allows you to import and export pricelist items using Excel files.
+        It supports exporting all non-computed pricelist items and importing updated prices.
+    """,
+    'author': 'Lasse Larsson, Kubang AB',
+    'website': 'https://www.kubang.eu',
+    'license': 'LGPL-3',
+    'depends': ['product', 'sale'],
     'data': [
         'security/ir.model.access.csv',
-        'security/pricelist_import_export_security.xml',
-        'wizard/pricelist_import_export_wizard_view.xml',
-        'views/menu_views.xml',
-        'views/product_pricelist_views.xml',
-        'views/pricelist_import_export.xml',
+        'wizard/pricelist_import_export_wizard.xml',
+        'views/pricelist_views.xml',
     ],
     'installable': True,
+    'application': False,
+    'auto_install': False,
 }

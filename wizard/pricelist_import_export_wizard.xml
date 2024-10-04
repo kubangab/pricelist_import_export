@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pricelist_import_export_wizard" model="ir.ui.view">
+        <field name="name">pricelist.import.export.wizard.form</field>
+        <field name="model">pricelist.import.export.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Import/Export Pricelist">
+                <group>
+                    <field name="pricelist_id" options="{'no_create': True}"/>
+                    <field name="action_type" widget="radio"/>
+                    <field name="file" filename="file_name" attrs="{'invisible': [('action_type', '=', 'export')], 'required': [('action_type', '=', 'import')]}"/>
+                    <field name="file_name" invisible="1"/>
+                </group>
+                <field name="import_log" readonly="1" attrs="{'invisible': [('import_log', '=', False)]}" widget="text"/>
+                <footer>
+                    <button name="action_import_export" string="Execute" type="object" class="btn-primary" attrs="{'invisible': [('operation_done', '=', True)]}"/>
+                    <button string="Close" class="btn-secondary" special="cancel"/>
+                    <field name="operation_done" invisible="1"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pricelist_import_export_wizard" model="ir.actions.act_window">
+        <field name="name">Import/Export Pricelist</field>
+        <field name="res_model">pricelist.import.export.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="view_pricelist_import_export_wizard"/>
+        <field name="binding_model_id" ref="product.model_product_pricelist"/>
+        <field name="binding_view_types">form</field>
+    </record>
+</odoo>

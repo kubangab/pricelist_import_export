@@ -1,59 +1,59 @@
 # Pricelist Import/Export
 
 ## Overview
-The Pricelist Import/Export module is an Odoo 16 extension that enhances the functionality of product pricelists by allowing users to easily import and export pricelist data using Excel files. This module streamlines the process of managing large numbers of product prices across different pricelists.
+The Pricelist Import/Export module for Odoo 16 provides a simple and efficient way to manage product pricelists. It allows users to export existing pricelist items to an Excel file and import updated prices back into the system.
 
 ## Features
-- **Import Pricelists**: Quickly update product prices by importing Excel files.
-- **Export Pricelists**: Generate Excel files containing current pricelist data for easy editing or backup.
-- **User-Friendly Interface**: Seamlessly integrated into Odoo's existing pricelist views.
-- **Flexible File Handling**: Works with standard Excel file formats for maximum compatibility.
+- Export pricelist items to Excel (.xlsx) format
+- Import updated prices from Excel files
+- User-friendly wizard interface
+- Supports fixed price items in pricelists
+- Automatic file download upon export
+- Error logging for import issues
 
 ## Installation
 1. Copy the `pricelist_import_export` folder to your Odoo addons directory.
 2. Update the addons list in your Odoo instance.
-3. Install the module through the Odoo Apps menu.
-
-## Configuration
-No additional configuration is required. The module will automatically add its features to the product pricelist views.
+3. Install the "Pricelist Import/Export" module from the Odoo Apps menu.
 
 ## Usage
-### Importing a Pricelist
-1. Navigate to Sales > Configuration > Pricelists.
-2. Select a pricelist or create a new one.
-3. Click the "Import" button at the top of the pricelist form.
-4. Choose your Excel file and click "Import".
 
 ### Exporting a Pricelist
 1. Navigate to Sales > Configuration > Pricelists.
 2. Select the pricelist you want to export.
-3. Click the "Export" button at the top of the pricelist form.
-4. The system will generate and download an Excel file with the current pricelist data.
+3. Click on the "Import/Export" button in the form view.
+4. In the wizard, select "Export" as the action type.
+5. Click "Execute". An Excel file will be automatically downloaded containing the pricelist items.
+
+### Importing Updated Prices
+1. Navigate to Sales > Configuration > Pricelists.
+2. Select the pricelist you want to update.
+3. Click on the "Import/Export" button in the form view.
+4. In the wizard, select "Import" as the action type.
+5. Upload the Excel file containing the updated prices.
+6. Click "Execute". The system will process the file and update the pricelist items.
+7. Check the import log for any errors or warnings.
 
 ## File Format
-The Excel file for import/export should have the following columns:
-1. Internal Reference (Product Code)
-2. Product Name
-3. Price
+The Excel file used for import/export should have the following columns:
+1. Internal Reference
+2. Product
+3. Variant
+4. Price
 
-## Dependencies
-- `base`
-- `sale`
-
-## Author
-Lasse Larsson
-
-## Website
-https://kubang.se
-
-## License
-This module is licensed under the GNU Affero General Public License (AGPL-3.0).
+## Note
+- Only fixed price items in the pricelist will be exported and can be imported.
+- Ensure that the "Internal Reference" in the import file matches the product's internal reference in Odoo for successful updates.
 
 ## Support
-For support, please contact the author or visit the website mentioned above.
+For any issues or feature requests, please contact your Odoo support team or the module maintainer.
 
-## Contribution
-Contributions, issues, and feature requests are welcome. Feel free to check the [issues page](link-to-your-issues-page) if you want to contribute.
+## Contributors
+- Lasse Larsson, Kubang AB
 
-## Changelog
-- 16.0.2.0.0: Initial release for Odoo 16.
+## License
+This module is licensed under LGPL-3.
+
+---
+
+We hope this module helps streamline your pricelist management process in Odoo 16!

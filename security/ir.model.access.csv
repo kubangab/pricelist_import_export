@@ -1,3 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_pricelist_import_export_wizard_user,pricelist.import.export.wizard user,model_pricelist_import_export_wizard,base.group_user,1,1,1,1
-access_pricelist_import_export_wizard_manager,pricelist.import.export.wizard manager,model_pricelist_import_export_wizard,sales_team.group_sale_manager,1,1,1,1
+access_pricelist_import_export_wizard,access.pricelist.import.export.wizard,model_pricelist_import_export_wizard,sales_team.group_sale_manager,1,1,1,1
