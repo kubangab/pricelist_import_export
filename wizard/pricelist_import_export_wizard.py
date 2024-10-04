@@ -123,7 +123,7 @@ class PricelistImportExportWizard(models.TransientModel):
                         pricelist_item.fixed_price = price
                         success_count += 1
                         if old_price != price:
-                            self._cr.commit()  # Commit the change immediately
+                            self.env.cr.commit()  # Commit the change immediately
                             self.env.cache.invalidate()  # Invalidate the cache
                     else:
                         error_msg = f"Row {row + 1}: No existing pricelist item found for product '{internal_ref}'. Skipping row."
@@ -135,8 +135,6 @@ class PricelistImportExportWizard(models.TransientModel):
                     error_log.append(error_msg)
                     error_count += 1
 
-            self.import_log = "\n".join(error_log) if error_log else "All rows were imported successfully."
-            
             self.write({
                 'import_log': "\n".join(error_log) if error_log else "All rows were imported successfully.",
                 'operation_done': True

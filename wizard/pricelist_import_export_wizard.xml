@@ -8,12 +8,12 @@
                 <group>
                     <field name="pricelist_id" options="{'no_create': True}"/>
                     <field name="action_type" widget="radio"/>
-                    <field name="file" filename="file_name" attrs="{'invisible': [('action_type', '=', 'export')], 'required': [('action_type', '=', 'import')]}"/>
+                    <field name="file" filename="file_name" invisible="action_type == 'export'" required="action_type == 'import'"/>
                     <field name="file_name" invisible="1"/>
                 </group>
-                <field name="import_log" readonly="1" attrs="{'invisible': [('import_log', '=', False)]}" widget="text"/>
+                <field name="import_log" readonly="1" invisible="not import_log" widget="text"/>
                 <footer>
-                    <button name="action_import_export" string="Execute" type="object" class="btn-primary" attrs="{'invisible': [('operation_done', '=', True)]}"/>
+                    <button name="action_import_export" string="Execute" type="object" class="btn-primary" invisible="operation_done"/>
                     <button string="Close" class="btn-secondary" special="cancel"/>
                     <field name="operation_done" invisible="1"/>
                 </footer>
